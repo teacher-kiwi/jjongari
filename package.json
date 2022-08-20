@@ -10,11 +10,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.js": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
-    ]
+    "**/*.js": "eslint"
   },
   "repository": {
     "type": "git",
