@@ -1,0 +1,49 @@
+{
+  "name": "jjongari",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teacher-kiwi/jjongari.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teacher-kiwi/jjongari/issues"
+  },
+  "homepage": "https://github.com/teacher-kiwi/jjongari#readme",
+  "dependencies": {
+    "apollo-server-core": "^3.10.1",
+    "apollo-server-express": "^3.10.1",
+    "express": "^4.18.1",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
