@@ -3,7 +3,7 @@ const { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageLocalDef
 const express = require("express");
 const http = require("http");
 
-async function startApolloServer(typeDefs, resolvers) {
+async function startApolloServer(port, typeDefs, resolvers) {
   const app = express();
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
@@ -18,7 +18,17 @@ async function startApolloServer(typeDefs, resolvers) {
   });
 
   await server.start();
+
   server.applyMiddleware({ app });
-  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+
+  app.get("/", (req, res) => {
+    res.send("hello wolrd!!");
+  });
+  app.get("*", (req, res) => {
+    res.send("page not found");
+  });
+  await new Promise((resolve) => httpServer.listen({ port }, resolve));
+  console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
 }
+
+module.exports = startApolloServer;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app/index",
+    "dev": "nodemon app/bin/www",
     "precommit": "lint-staged",
     "prepare": "husky install"
   },
