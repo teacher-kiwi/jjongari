@@ -38,9 +38,10 @@ const resolvers = {
   Query: {
     jjong: async (_, { id }) => await jjong.findUnique({ where: { id } }),
 
-    jjongs: async (_, { subject, grade, semester, achievementId, text, sort }) => {
+    jjongs: async (_, { id, subject, grade, semester, achievementId, text, sort }) => {
       try {
         let filterOpt = {};
+        if (id) filterOpt.id = { in: id };
         if (subject) filterOpt.subject = subject;
         if (grade) filterOpt.grade = grade;
         if (semester) filterOpt.semester = semester;
@@ -62,8 +63,14 @@ const resolvers = {
   },
 
   Mutation: {
-    postJjong: async (_, { input }, { author }) =>
-      await jjong.create({ data: { ...input, author }, include: { achievement: true } }),
+    postJjong: async (_, { input }, { author }) => {
+      try {
+        if (!author) throw new Error("토큰을 삭제해주세요.");
+        return await jjong.create({ data: { ...input, author }, include: { achievement: true } });
+      } catch (err) {
+        throw err;
+      }
+    },
 
     editJjong: async (_, { id, input, point }, { author }) => {
       try {

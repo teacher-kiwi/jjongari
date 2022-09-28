@@ -7,6 +7,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 
 const JJONGS = gql`
   query Jjongs(
+    $id: [Int]
     $subject: String
     $grade: String
     $semester: String
@@ -15,6 +16,7 @@ const JJONGS = gql`
     $sort: Point
   ) {
     jjongs(
+      id: $id
       subject: $subject
       grade: $grade
       semester: $semester

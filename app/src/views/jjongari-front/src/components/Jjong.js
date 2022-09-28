@@ -157,7 +157,7 @@ function Jjong({ id, grade, semester, subject, achievementId, achievement, text,
           <p className="text-md font-bold mx-2">{usagesNum ? usagesNum : 0}</p>
         </div>
 
-        <div className={`border-2 p-1 rounded-full border-${like ? "accent" : "neutral"} flex mx-auto`}>
+        <div className={`border-2 p-1 rounded-full border-neutral${like ? "-content" : ""} flex mx-auto`}>
           <button className="btn btn-circle btn-xs" onClick={handleClickLike}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
